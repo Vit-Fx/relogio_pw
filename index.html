@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html language="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Relógio</title>
+        <style type="text/css">
+
+            .Agenerico{
+                display: flex;
+                justify-content: center;
+                color:rgb(255,255,255);
+                font-weight: bold;
+                text-decoration:none;
+            }
+            
+            #parar{
+                margin-top:100px;
+            }
+
+            #reiniciar{
+                margin-top:20px;
+            }
+
+            form{
+                border: 15px solid rgb(177, 101, 177);
+                border-radius: 800px;
+                height: 450px;
+                width: 450px;
+                margin: 0 auto;
+                background-color: rgb(219, 192, 219);
+                margin-top: 6%;
+                font-family: 'Times New Roman';
+                font-size: 20px;
+            }
+
+            #caixa{
+                font-weight: bold;
+                text-align: center;
+                margin-top: 150px;
+            }
+
+        </style>
+
+        <script language="JavaScript">
+
+            var inicia;
+            ReloadTime();
+
+            function ReloadTime(){
+                inicia = window.setInterval("Mostrar()",1000);
+            }
+
+            function StopTime(){
+                window.clearInterval(inicia);
+            }
+
+            function Mostrar(){
+                var hoje = new Date();
+                var dia = hoje.getDate();
+                var mes = hoje.getMonth() + 1;
+                var ano = hoje.getFullYear();
+                var hora = hoje.getHours();
+                var minuto = hoje.getMinutes();
+                var segundo = hoje.getSeconds();
+
+                if(hora < 10){
+                    hora = "0" + hora;
+                }
+
+                if(minuto < 10){
+                    minuto = "0" + minuto;
+                }
+
+                if(segundo < 10){
+                    segundo = "0" + segundo;
+                }
+
+                if(dia < 10){
+                    dia = "0" + dia;
+                }
+
+                if(mes < 10){
+                    mes = "0" + mes;
+                }
+
+                var tempo = "Hoje é " + dia + "/" + mes + "/" + ano + " e " + hora + ":" + minuto + ":" + segundo + " horas.";
+
+                document.getElementById("caixa").innerText = tempo;
+            }
+        </script>
+    </head>
+
+    <body onLoad="Mostrar()">
+        <form>
+            <p id="caixa"></p>
+            <a id="parar" class="Agenerico" href="JavaScript:StopTime()">Pare o relógio</a>
+            <a id="reiniciar" class="Agenerico" href="JavaScript:ReloadTime()">Reiniciar o relógio</a>
+        </form>
+    </body>
+</html>
